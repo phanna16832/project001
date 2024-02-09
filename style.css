@@ -3,9 +3,9 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color:#f0f0f0;
+    background-color: #f0f0f0;
 }
-pre{
+pre {
     color: red;
     text-align: center;
 }
@@ -14,53 +14,57 @@ pre{
     color: #fff;
     padding: 10px;
 }
-.icon{
+.icon {
     background-color: red;
     padding-top: 10px;
 }
-
 .navbar ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
-
 .navbar li {
     display: inline;
     margin-right: 10px;
 }
-#btn{
+#btn {
     border-radius: 10px;
 }
 .navbar a {
     color: #fff;
     text-decoration: none;
 }
-
 .navbar a:hover {
     color: #ffd700; /* Change color on hover */
 }
-
 .navbar li:not(:last-child)::after {
     content: " |";
     color: #fff;
     margin-left: 5px;
     margin-right: 5px;
 }
-
 .content {
     padding: 20px;
 }
-
 pre {
     white-space: pre-wrap;
     padding: 10px;
 }
-#btn1{
+#btn1 {
+    background-color: #ffd700;
+    color: red;
+    border-style: outset;
     border: none;
     border-radius: 10px;
+    margin-top: 10px;
 }
-input[type="submit"], .btn{
+#Search,
+#SearchButton,
+#SearchResults {
+    text-align: center;
+}
+input[type="submit"],
+.btn {
     display: block;
     margin: 10px auto;
     padding: 10px 20px;
@@ -85,12 +89,33 @@ input[type="submit"], .btn{
         display: block;
         margin-bottom: 5px;
     }
-    input[type="submit"], button {
+    input[type="submit"],
+    button {
         display: block;
         width: 80%;
         margin: 10px auto;
     }
     pre {
         padding: 5px;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    /* Adjustments for larger screens */
+    .navbar {
+        padding: 10px;
+    }
+    .navbar ul li {
+        display: inline;
+        margin-right: 10px;
+    }
+    input[type="submit"],
+    button {
+        display: inline-block;
+        margin: 10px 5px;
+        width: auto;
+    }
+    pre {
+        padding: 10px;
     }
 }

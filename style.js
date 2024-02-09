@@ -1,11 +1,11 @@
 let imageDisplayed = false; // Flag variable to track whether the image has been displayed
 let text = document.getElementById("text");
 let btn1 = document.getElementById("btn1"); // Declaring btn1 globally
+let btn = document.getElementById("btn"); // Declaring btn globally
 let photo = document.getElementById("photo"); // Declaring photo globally
+let qr = document.getElementById("qrCode"); // Declaring qr globally
 
 const cny = () => {
-    var btn = document.getElementById("btn");
-    var qr = document.getElementById("qrCode");
     btn.addEventListener("click", handleClick);
 
     function handleClick(event) {
@@ -24,13 +24,11 @@ const cny = () => {
             // Set the flag to true indicating that the image has been displayed
             imageDisplayed = true;
             text.textContent = "អាចអាំងប៉ាវតាមគណនី ABA នេះបាន: 002 892 523";
-            btn.textContent = "បញ្ជូន";
+            btn.textContent = "btn";
             btn1.textContent = "បញ្ជូន"; // Setting text content for btn1
-            btn1.href = '1.html';
 
             // Show btn1
             btn1.style.display = "block"; // or "inline", depending on the desired display type
-            
             // Show photo input
             photo.style.display = "block";
         }
@@ -41,9 +39,6 @@ const cny = () => {
 window.onload = cny;
 
 const reset = () => {
-    var btn = document.getElementById("btn");
-    var qr = document.getElementById("qrCode");
-
     // Remove the displayed image
     qr.innerHTML = "";
 
@@ -56,3 +51,8 @@ const reset = () => {
     btn1.style.display = "none";
     photo.style.display = "none";
 }
+
+// Function to navigate to another page when btn1 is clicked
+btn1.addEventListener("click", function() {
+    window.location.href = "1.html"; // Change "1.html" to the desired destination page
+});
