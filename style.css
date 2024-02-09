@@ -22,7 +22,9 @@ body {
     display: inline;
     margin-right: 10px;
 }
-
+#btn{
+    border-radius: 10px;
+}
 .navbar a {
     color: #fff;
     text-decoration: none;
