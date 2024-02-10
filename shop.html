@@ -19,13 +19,18 @@
             <h2>Product 1</h2>
             <p>Description: Lorem ipsum dolor sit amet.</p>
             <p>Price: $10.00</p>
+            <button class="increase">+</button>
+            <input type="number" class="quantity" value="0" min="1" max="99">
+            <button class="decrease">-</button>
             <button onclick="addToCart('Product 1', 10.00, 'c01.jpg')">Add to Cart</button>
         </div>
         <div class="product">
             <img src="qrcode.jpg" alt="">
             <h2>Product 2</h2>
             <p>Description: Consectetur adipiscing elit.</p>
-            <p>Price: $15.00</p>
+            <button class="increase">+</button>
+            <input type="number" class="quantity" value="0" min="1" max="99">
+            <button class="decrease">-</button>
             <button onclick="addToCart('Product 2', 15.00, 'qrcode.jpg')">Add to Cart</button>
         </div>
         <div class="product">
@@ -33,6 +38,9 @@
             <h2>Product 3</h2>
             <p>Description: Consectetur adipiscing elit.</p>
             <p>Price: $1.00</p>
+            <button class="increase">+</button>
+            <input type="number" class="quantity" value="0" min="1" max="99">
+            <button class="decrease">-</button>
             <button onclick="addToCart('Product 3', 1.00, 'c01.jpg')">Add to Cart</button>
         </div>
         <div class="product">
@@ -40,6 +48,9 @@
             <h2>Product 4</h2>
             <p>Description: Consectetur adipiscing elit.</p>
             <p>Price: $2.00</p>
+            <button class="increase">+</button>
+            <input type="number" class="quantity" value="0" min="1" max="99">
+            <button class="decrease">-</button>
             <button onclick="addToCart('Product 4', 2.00, 'qrcode.jpg')">Add to Cart</button>
         </div>
     </div>
@@ -48,10 +59,34 @@
         var cart = [];
 
         function addToCart(productName, price, image) {
-            cart.push({ name: productName, price: price, image: image });
+            var quantity = parseInt(document.querySelector('.product input.quantity').value);
+            cart.push({ name: productName, price: price, image: image, quantity: quantity });
             // Store cart data in localStorage
             localStorage.setItem('cart', JSON.stringify(cart));
         }
+
+        var increaseButtons = document.querySelectorAll('.increase');
+        var decreaseButtons = document.querySelectorAll('.decrease');
+
+        increaseButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                var input = this.parentElement.querySelector('.quantity');
+                var currentValue = parseInt(input.value);
+                if (!isNaN(currentValue)) {
+                    input.value = currentValue + 1;
+                }
+            });
+        });
+
+        decreaseButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                var input = this.parentElement.querySelector('.quantity');
+                var currentValue = parseInt(input.value);
+                if (!isNaN(currentValue) && currentValue > 1) {
+                    input.value = currentValue - 1;
+                }
+            });
+        });
     </script>
 </body>
 </html>
