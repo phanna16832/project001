@@ -1,4 +1,25 @@
-/* styles.css */
+/* Style for navigation */
+.nav {
+    background-color: #ff0707;
+    color: #fff;
+    padding: 10px;
+}
+
+.nav a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.nav a:hover {
+    color: #ffd700; /* Change color on hover */
+}
+
+.nav a:not(:last-child)::after {
+    content: " |";
+    color: #fff;
+    margin-left: 5px;
+    margin-right: 5px;
+}
 
 /* Style for product images */
 .product img {

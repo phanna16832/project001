@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="shop.css">
 </head>
 <body>
-    <div>
+    <div class="nav">
         <a href="index.html">Homepage</a>
         <a href="cart.html">Cart</a>
     </div>
@@ -29,14 +29,14 @@
             <button onclick="addToCart('Product 2', 15.00, 'qrcode.jpg')">Add to Cart</button>
         </div>
         <div class="product">
-            <img src="c01.jpg" alt=""> <!-- Corrected the image source -->
+            <img src="c01.jpg" alt="">
             <h2>Product 3</h2>
             <p>Description: Consectetur adipiscing elit.</p>
             <p>Price: $1.00</p>
             <button onclick="addToCart('Product 3', 1.00, 'c01.jpg')">Add to Cart</button>
         </div>
         <div class="product">
-            <img src="qrcode.jpg" alt=""> <!-- Corrected the image source -->
+            <img src="qrcode.jpg" alt="">
             <h2>Product 4</h2>
             <p>Description: Consectetur adipiscing elit.</p>
             <p>Price: $2.00</p>
@@ -49,13 +49,8 @@
 
         function addToCart(productName, price, image) {
             cart.push({ name: productName, price: price, image: image });
-            updateCart();
             // Store cart data in localStorage
             localStorage.setItem('cart', JSON.stringify(cart));
-        }
-
-        function updateCart() {
-            // This function is removed because it's not needed on the main page
         }
     </script>
 </body>

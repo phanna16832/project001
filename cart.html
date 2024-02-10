@@ -4,57 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shopping Cart</title>
+<link rel="stylesheet" href="cart.css">
 </head>
 <body>
-    <div>
-        <a href="index.html">Homepage</a>
-        <a href="cart.html">Cart</a>
+    <div class="nav">
+        <a href="index.html">ទំព័រមុខ</a>
+        <a href="shop.html">ហាង</a>
     </div>
     <h1>Your Shopping Cart</h1>
     <div id="cart"></div>
-
-    <script>
-        // Retrieve cart data from localStorage or initialize an empty array if it doesn't exist
-        var cartData = JSON.parse(localStorage.getItem('cart')) || [];
-
-        var cartElement = document.getElementById("cart");
-        var totalPrice = 0;
-
-        // Create an object to store aggregated quantities and total cost of each product
-        var productInfo = {};
-
-        // Aggregate quantities and total cost of each product
-        cartData.forEach(function(item) {
-            if (!productInfo[item.name]) {
-                productInfo[item.name] = {
-                    quantity: item.quantity || 1, // Set quantity to 1 if it's not defined
-                    totalCost: item.price * (item.quantity || 1), // Calculate total cost for the item
-                    image: item.image // Get the image URL for the item
-                };
-            } else {
-                productInfo[item.name].quantity += item.quantity || 1; // Increment quantity by 1 if it's not defined
-                productInfo[item.name].totalCost += item.price * (item.quantity || 1); // Update total cost for the item
-            }
-            totalPrice += item.price * (item.quantity || 1); // Calculate total price, considering quantity
-        });
-
-        // Display aggregated quantities and total cost of each product in the cart
-        for (var productName in productInfo) {
-            var product = productInfo[productName];
-            var itemElement = document.createElement("div");
-            var imageElement = document.createElement("img");
-            imageElement.src = product.image; // Set the image URL
-            imageElement.style.maxWidth = "100px"; // Set maximum width for the image
-            itemElement.appendChild(imageElement); // Append the image to the item element
-            itemElement.innerHTML += `<p><strong>Name:</strong> ${productName}</p>
-                                       <p><strong>Quantity:</strong> ${product.quantity}</p>
-                                       <p><strong>Total:</strong> $${product.totalCost.toFixed(2)}</p>`;
-            cartElement.appendChild(itemElement);
-        }
-
-        var totalElement = document.createElement("div");
-        totalElement.textContent = "Total: $" + totalPrice.toFixed(2);
-        cartElement.appendChild(totalElement);
-    </script>
+    <button id="buy">បញ្ជាទិញ</button>
+    <script src="cart.js"></script>
 </body>
 </html>
