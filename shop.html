@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple E-Commerce Website</title>
+<link rel="stylesheet" href="shop.css">
+</head>
+<body>
+    <div>
+        <a href="index.html">Homepage</a>
+        <a href="cart.html">Cart</a>
+    </div>
+    <h1>Welcome to Our E-Commerce Store</h1>
+
+    <div id="products">
+        <div class="product">
+            <img src="c01.jpg" alt="">
+            <h2>Product 1</h2>
+            <p>Description: Lorem ipsum dolor sit amet.</p>
+            <p>Price: $10.00</p>
+            <button onclick="addToCart('Product 1', 10.00, 'c01.jpg')">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="qrcode.jpg" alt="">
+            <h2>Product 2</h2>
+            <p>Description: Consectetur adipiscing elit.</p>
+            <p>Price: $15.00</p>
+            <button onclick="addToCart('Product 2', 15.00, 'qrcode.jpg')">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="c01.jpg" alt=""> <!-- Corrected the image source -->
+            <h2>Product 3</h2>
+            <p>Description: Consectetur adipiscing elit.</p>
+            <p>Price: $1.00</p>
+            <button onclick="addToCart('Product 3', 1.00, 'c01.jpg')">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="qrcode.jpg" alt=""> <!-- Corrected the image source -->
+            <h2>Product 4</h2>
+            <p>Description: Consectetur adipiscing elit.</p>
+            <p>Price: $2.00</p>
+            <button onclick="addToCart('Product 4', 2.00, 'qrcode.jpg')">Add to Cart</button>
+        </div>
+    </div>
+
+    <script>
+        var cart = [];
+
+        function addToCart(productName, price, image) {
+            cart.push({ name: productName, price: price, image: image });
+            updateCart();
+            // Store cart data in localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        function updateCart() {
+            // This function is removed because it's not needed on the main page
+        }
+    </script>
+</body>
+</html>

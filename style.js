@@ -1,3 +1,39 @@
+document.getElementById("searchButton").addEventListener("click", function() {
+    var searchTerm = document.getElementById("search").value.trim();
+    if (searchTerm !== "") {
+        search(searchTerm);
+    } else {
+        alert("Please enter a search term.");
+    }
+});
+
+function search(searchTerm) {
+    // Dummy file names for demonstration
+    var dummyFileNames = [
+        "example_file.txt",
+        "document.pdf",
+        "image.jpg",
+        "presentation.pptx"
+    ];
+
+    var resultsContainer = document.getElementById("searchResults");
+    resultsContainer.innerHTML = ""; // Clear previous results
+
+    var foundFiles = dummyFileNames.filter(function(fileName) {
+        return fileName.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+
+    if (foundFiles.length > 0) {
+        foundFiles.forEach(function(fileName) {
+            var resultElement = document.createElement("div");
+            resultElement.textContent = fileName;
+            resultsContainer.appendChild(resultElement);
+        });
+    } else {
+        resultsContainer.textContent = "No files found matching the search term.";
+    }
+}
+
 let imageDisplayed = false; // Flag variable to track whether the image has been displayed
 let text = document.getElementById("text");
 let btn1 = document.getElementById("btn1"); // Declaring btn1 globally
