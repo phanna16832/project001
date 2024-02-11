@@ -10,32 +10,72 @@
     <div class="container">
         <form id="loginForm" action="">
             <h2>Login</h2>
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email"><br><br>
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password"><br><br>
+            <label for="loginEmail">Email</label>
+            <input type="email" name="email" id="loginEmail"><br><br>
+            <label for="loginPassword">Password</label>
+            <input type="password" name="password" id="loginPassword"><br><br>
             <input type="submit" value="Log In">
         </form>
         <form id="signupForm" action="">
             <h2>Create Account</h2>
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email"><br><br>
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password"><br><br>
-            <label for="password1">Confirm Password</label>
-            <input type="password" name="password1" id="password1"><br><br>
+            <label for="signupEmail">Email</label>
+            <input type="email" name="email" id="signupEmail"><br><br>
+            <label for="signupPassword">Password</label>
+            <input type="password" name="password" id="signupPassword"><br><br>
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" name="confirmPassword" id="confirmPassword"><br><br>
             <input type="submit" value="Create Account">
         </form>
     </div>
 
     <script>
+        // Predefined email and password arrays
+        var validEmails = ['tester@gmail.com', '123@gmail.com'];
+        var validPasswords = ['1234'];
+
         // Redirect to shop.html when login form submitted
         document.getElementById("loginForm").addEventListener("submit", function(event) {
             event.preventDefault();
-            window.location.href = "shop.html";
+            var email = document.getElementById("loginEmail").value;
+            var password = document.getElementById("loginPassword").value;
+
+            // Check if the provided email and password exist in the arrays
+            var emailIndex = validEmails.indexOf(email);
+            if (emailIndex !== -1 && validPasswords[emailIndex] === password) {
+                // Email and password are valid, redirect to shop.html
+                window.location.href = "shop.html";
+            } else {
+                // Invalid email or password
+                alert("Invalid email or password");
+            }
         });
 
-        // Redirect to shop.html when signup form submitted
+        // Store signup data and redirect to shop.html when signup form submitted
+        document.getElementById("signupForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var email = document.getElementById("signupEmail").value;
+            var password = document.getElementById("signupPassword").value;
+            var confirmPassword = document.getElementById("confirmPassword").value;
+
+            // Check if passwords match
+            if (password !== confirmPassword) {
+                alert("Passwords do not match");
+                return;
+            }
+
+            // Check if email already exists in the validEmails array
+            if (validEmails.indexOf(email) !== -1) {
+                alert("Email already exists");
+                return;
+            }
+
+            // Add email and password to the arrays
+            validEmails.push(email);
+            validPasswords.push(password);
+
+            // Redirect to shop.html
+            window.location.href = "shop.html";
+        });
     </script>
 </body>
 </html>
