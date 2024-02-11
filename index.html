@@ -3,34 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chinese New Year</title>
-    <link rel="stylesheet" href="style.css">
-    <!--icon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Login</title>
 </head>
 <body>
-    <nav class="navbar">
-        <ul>
-            <li><a href="index.html">ទំនិញក្នុងស្តុក</a></li>
-            <li><a href="#">ការបញ្ជាទិញក្រៅប្រទេស</a></li>
-            <li><a href="#">ផ្សេងៗ</a></li>
-            <li><a href="shop.html">ហាងទំនិញ</a></li>
-            <li><a href="#">ទំនាក់ទំនង់មកយើង</a></li>
-        </ul>
-    </nav>
-    <pre>
-        Happy Chinese New Year 🧧🧧
-    </pre>
-    <input type="search" name="search" id="search">
-    <button type="button" id="searchButton">Search</button>
-    <div id="searchResults"></div>
-      <!-- Search results will be displayed here -->
-    <input type="submit" value="ចុចបូតុង 🧧🧨" id="btn">
-    <div id="qrCode"></div>
-    <pre id="text" onclick="" style="text-align: center; color: red; "></pre>
-    <input type="file" id="photo" style="display: none;">
-    <button id="btn1" style="display: none;" >បញ្ជូន</button>
-    <button type="submit" class="btn" onclick="reset()">លុប</button>
-    <script src="style.js"></script> <!-- Load the external script file -->
+    <form id="loginForm">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email"><br><br>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password"><br><br>
+        <input type="submit" value="Login">
+    </form>
+    <script src="login.js"></script>
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Get the values of email and password from the form
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+
+            // Send data to server for authentication
+            fetch("https://your-server-address:5001/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ email: email, password: password })
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error("Network response was not ok.");
+                }
+            })
+            .then(data => {
+                if (data.success) {
+                    // Login successful, redirect to shop.html
+                    window.location.href = "shop.html";
+                } else {
+                    // Invalid login, display error message
+                    alert("Invalid email or password.");
+                }
+            })
+            .catch(error => {
+                // Server error or network error, display error message
+                console.error("Error:", error);
+                alert("An error occurred.");
+            });
+        });
+    </script>
 </body>
 </html>
