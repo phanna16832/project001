@@ -3,55 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Homepage</title>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <form id="loginForm">
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email"><br><br>
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password"><br><br>
-        <input type="submit" value="Login">
-    </form>
-    <script src="login.js"></script>
+    <div class="container">
+        <form id="loginForm" action="">
+            <h2>Login</h2>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email"><br><br>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password"><br><br>
+            <input type="submit" value="Log In">
+        </form>
+        <form id="signupForm" action="">
+            <h2>Create Account</h2>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email"><br><br>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password"><br><br>
+            <label for="password1">Confirm Password</label>
+            <input type="password" name="password1" id="password1"><br><br>
+            <input type="submit" value="Create Account">
+        </form>
+    </div>
+
     <script>
+        // Redirect to shop.html when login form submitted
         document.getElementById("loginForm").addEventListener("submit", function(event) {
             event.preventDefault();
-
-            // Get the values of email and password from the form
-            var email = document.getElementById("email").value;
-            var password = document.getElementById("password").value;
-
-            // Send data to server for authentication
-            fetch("https://your-server-address:5001/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ email: email, password: password })
-            })
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error("Network response was not ok.");
-                }
-            })
-            .then(data => {
-                if (data.success) {
-                    // Login successful, redirect to shop.html
-                    window.location.href = "shop.html";
-                } else {
-                    // Invalid login, display error message
-                    alert("Invalid email or password.");
-                }
-            })
-            .catch(error => {
-                // Server error or network error, display error message
-                console.error("Error:", error);
-                alert("An error occurred.");
-            });
+            window.location.href = "shop.html";
         });
+
+        // Redirect to shop.html when signup form submitted
     </script>
 </body>
 </html>
