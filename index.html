@@ -10,26 +10,27 @@
     <div class="nav">
         <a href="cart.html">Cart</a>
     </div>
-    <h1>Welcome to Our E-Commerce Store</h1>
+    <h1>Phanna Online Shop</h1>
 
     <div id="products">
         <div class="product">
             <img src="pr1.jpg" alt="">
-            <h2>Product 1</h2>
-            <p>Description: Lorem ipsum dolor sit amet.</p>
-            <p>Price: $3.76</p>
-            <button class="increase">+</button>
-            <input type="number" class="quantity" value="0" min="1" max="99">
+            <h2>អាវ swag</h2>
+            <p>មាន size ពី S - 3Xl</p>
+            <p>តម្លៃ: $3.76</p>
             <button class="decrease">-</button>
-            <button onclick="addToCart('Product 1', '3.76', 'pr1.jpg')">Add to Cart</button>
+            <input type="number" class="quantity" value="0" min="1" max="99">
+            <button class="increase">+</button>
+            <button><a href="https://t.me/Phanna133">ពណ៌មានលម្អិត</a></button>
+            <button onclick="addToCart('អាវ swag', '3.76', 'pr1.jpg')">Add to Cart</button>
         </div>
         <div class="product">
             <img src="qrcode.jpg" alt="">
             <h2>Product 2</h2>
             <p>Description: Consectetur adipiscing elit.</p>
-            <button class="increase">+</button>
-            <input type="number" class="quantity" value="0" min="1" max="99">
             <button class="decrease">-</button>
+            <input type="number" class="quantity" value="0" min="1" max="99">
+            <button class="increase">+</button>
             <button onclick="addToCart('Product 2', 15.00, 'qrcode.jpg')">Add to Cart</button>
         </div>
         <div class="product">
@@ -37,9 +38,9 @@
             <h2>Product 3</h2>
             <p>Description: Consectetur adipiscing elit.</p>
             <p>Price: $1.00</p>
-            <button class="increase">+</button>
-            <input type="number" class="quantity" value="0" min="1" max="99">
             <button class="decrease">-</button>
+            <input type="number" class="quantity" value="0" min="1" max="99">
+            <button class="increase">+</button>
             <button onclick="addToCart('Product 3', 1.00, 'c01.jpg')">Add to Cart</button>
         </div>
         <div class="product">
@@ -47,9 +48,9 @@
             <h2>Product 4</h2>
             <p>Description: Consectetur adipiscing elit.</p>
             <p>Price: $2.00</p>
-            <button class="increase">+</button>
-            <input type="number" class="quantity" value="0" min="1" max="99">
             <button class="decrease">-</button>
+            <input type="number" class="quantity" value="0" min="1" max="99">
+            <button class="increase">+</button>
             <button onclick="addToCart('Product 4', 2.00, 'qrcode.jpg')">Add to Cart</button>
         </div>
     </div>
@@ -57,12 +58,14 @@
     <script>
         var cart = [];
 
-        function addToCart(productName, price, image) {
-            var quantity = parseInt(document.querySelector('.product input.quantity').value);
-            cart.push({ name: productName, price: price, image: image, quantity: quantity });
-            // Store cart data in localStorage
-            localStorage.setItem('cart', JSON.stringify(cart));
-        }
+        <!-- Similar structure to the existing code, but remove the addToCart function and add a script to handle adding items to the cart -->
+    function addToCart(productName, price, image) {
+        var cartData = JSON.parse(localStorage.getItem('cart')) || [];
+        var quantity = parseInt(document.querySelector('.product input.quantity').value);
+        cartData.push({ name: productName, price: price, image: image, quantity: quantity });
+        localStorage.setItem('cart', JSON.stringify(cartData));
+    }
+
 
         var increaseButtons = document.querySelectorAll('.increase');
         var decreaseButtons = document.querySelectorAll('.decrease');

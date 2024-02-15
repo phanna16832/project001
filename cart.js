@@ -29,27 +29,14 @@ for (var productName in productInfo) {
     itemElement.appendChild(imageElement);
 
     var detailsElement = document.createElement("div");
-    detailsElement.innerHTML = detailsElement.innerHTML = `<p><strong>Name:</strong> ${productName}</p>
-    <p><strong>Quantity:</strong> <span id="${productName}-quantity" style="color: red;">${product.quantity}</span></p>
-    <p>Price:<span id="${productName}-price" style="color: #42f581;">$ ${product.price}</span></p>
-    <p><strong>Total:</strong> $<span id="${productName}-total">${product.totalCost.toFixed(2)}</span></p>`;    
+    detailsElement.innerHTML = detailsElement.innerHTML = `<p><strong>ឈ្មោះទំនិញ :</strong> ${productName}</p>
+    <p><strong>ចំនួន:</strong> <span id="${productName}-quantity" style="color: red;">${product.quantity}</span></p>
+    <p>តម្លៃ:<span id="${productName}-price" style="color: #42f581;">$ ${product.price}</span></p>
+    <p><strong>សរុប:</strong> $<span id="${productName}-total">${product.totalCost.toFixed(2)}</span></p>`;
 
     itemElement.appendChild(detailsElement);
 
     var quantityButtons = document.createElement("div");
-
-    var increaseButton = document.createElement("button");
-    increaseButton.textContent = "+";
-    increaseButton.onclick = (function (prod, name, totalId, price) {
-        return function () {
-            prod.quantity++;
-            updateCart(name, totalId, prod.quantity, price);
-            document.getElementById(`${name}-quantity`).textContent = prod.quantity; // Update quantity in HTML
-            document.getElementById(`${name}-total`).textContent = (prod.quantity * price).toFixed(2); // Update total cost in HTML
-            document.getElementById("total-price").textContent = "Total: $" + calculateTotalPrice().toFixed(2); // Update total price
-        };
-    })(product, productName, `${productName}-total`, product.price);
-    quantityButtons.appendChild(increaseButton);
 
     var decreaseButton = document.createElement("button");
     decreaseButton.textContent = "-";
@@ -66,6 +53,24 @@ for (var productName in productInfo) {
     })(product, productName, `${productName}-total`, product.price);
     quantityButtons.appendChild(decreaseButton);
 
+    var increaseButton = document.createElement("button");
+    increaseButton.textContent = "+";
+    increaseButton.onclick = (function (prod, name, totalId, price) {
+        return function () {
+            prod.quantity++;
+            updateCart(name, totalId, prod.quantity, price);
+            document.getElementById(`${name}-quantity`).textContent = prod.quantity; // Update quantity in HTML
+            document.getElementById(`${name}-total`).textContent = (prod.quantity * price).toFixed(2); // Update total cost in HTML
+            document.getElementById("total-price").textContent = "Total: $" + calculateTotalPrice().toFixed(2); // Update total price
+        };
+    })(product, productName, `${productName}-total`, product.price);
+    quantityButtons.appendChild(increaseButton);
+
+    //style button
+    increaseButton.style.backgroundColor = "#ff008c";
+    decreaseButton.style.backgroundColor = "#ff008c";
+    decreaseButton.style.marginRight = '35px';
+
     itemElement.appendChild(quantityButtons);
     cartElement.appendChild(itemElement);
 
@@ -74,7 +79,7 @@ for (var productName in productInfo) {
 }
 
 // Append total price below the products
-var totalElement = document.createElement("div");
+var totalElement = document.getElementById("total");
 totalElement.textContent = "Total: $" + totalPrice.toFixed(2);
 totalElement.id = "total-price"; // Set the ID for the total price element
 cartElement.appendChild(totalElement);
