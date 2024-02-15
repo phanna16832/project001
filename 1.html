@@ -1,32 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="1.css">
-    <!--font-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Content:wght@700&family=Hanuman:wght@100;300;400;700;900&display=swap"
-        rel="stylesheet">
+    <title>Form Page</title>
 </head>
-
 <body>
-    <div class="nav">
-        <a href="index.html">ហាងទំនិញ</a>
-        <a href="https://t.me/Phanna133" target="_blank">Contact</a>
-        <a href="1.html">ការតាមដានទំនិញ</a>
-    </div>
-    <div class="searchF">
-        <input type="search" name="search" id="search">
-        <input type="submit" value="ស្វែងរក" id="searchBtn" onclick="searchFunction()">
-    </div>
-    <div class="searchResult" id="searchResult"></div>
-   
-    <script src="search.js"></script>
-</body>
+    <form id="formDataForm">
+        <label for="productName">ឈ្មោះទំនិញ:</label>
+        <input type="text" name="productName" id="productName"><br><br>
+        <label for="link">Linkនៃទំនិញ:</label>
+        <input type="url" name="link" id="link"><br><br>
+        <!-- Other form fields -->
+        <input type="submit" value="ស្នើ">
+    </form>
 
+    <script>
+        // Get the form element
+        const formDataForm = document.getElementById('formDataForm');
+
+        // Add submit event listener
+        formDataForm.addEventListener('submit', function(event) {
+            // Prevent the default form submission
+            event.preventDefault();
+
+            // Get form data
+            const formData = new FormData(formDataForm);
+
+            // Convert form data to object
+            const formDataObj = {};
+            formData.forEach((value, key) => {
+                formDataObj[key] = value;
+            });
+
+            // Store form data in localStorage
+            localStorage.setItem('formData', JSON.stringify(formDataObj));
+
+            // Redirect to another page
+            window.location.href = 'another_page.html';
+        });
+    </script>
+</body>
 </html>

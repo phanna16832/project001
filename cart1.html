@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Page</title>
+</head>
+<body>
+    <div id="formDataDisplay"></div>
+
+    <script>
+        // Get the element to display form data
+        const formDataDisplay = document.getElementById('formDataDisplay');
+
+        // Retrieve form data from localStorage
+        const formDataJson = localStorage.getItem('formData');
+
+        // Parse JSON data to object
+        const formData = JSON.parse(formDataJson);
+
+        // Display form data
+        if (formData) {
+            formDataDisplay.innerHTML = `
+                <p><strong>ឈ្មោះទំនិញ:</strong> ${formData.productName}</p>
+                <p><strong>Linkនៃទំនិញ:</strong> <a href="${formData.link}" target="_blank">${formData.link}</a></p>
+                <!-- Display other form fields as needed -->
+            `;
+        } else {
+            formDataDisplay.textContent = 'No form data available.';
+        }
+    </script>
+</body>
+</html>
