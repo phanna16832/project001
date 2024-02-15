@@ -1,0 +1,35 @@
+body {
+    font-family: "Hanuman", serif;
+    margin: 0;
+    padding: 0;
+}
+
+.nav {
+    background-color: #ff0707;
+    color: #fff;
+    padding: 10px;
+}
+
+.nav a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.nav a:hover {
+    color: #ffd700; /* Change color on hover */
+}
+
+.nav a:not(:last-child)::after {
+    content: " |";
+    color: #fff;
+    margin-left: 5px;
+}
+.searchF{
+    margin-top: 20px;
+    text-align: center;
+}
+.searchF #searchBtn{
+    background-color: #ffd700;
+    border: none;
+    border-radius: 10px;
+}

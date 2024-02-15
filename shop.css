@@ -1,4 +1,7 @@
 /* Style for navigation */
+body{
+    font-family: "Hanuman", serif;
+}
 .nav {
     background-color: #ff0707;
     color: #fff;
