@@ -4,40 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Page</title>
+    <link rel="stylesheet" href="1.css"> <!-- Link to your CSS file -->
 </head>
 <body>
+    <div class="nav">
+        <a href="cart.html">កន្ត្រក់</a>
+        <a href="1.html">ការតាមដានទំនិញ</a>
+        <a href="cart1.html">កន្ត្រក់បញ្ជាទំនិញក្រៅប្រទេស</a>
+        <a href="https://t.me/Phanna133" target="_blank">Contact</a>
+    </div>
+
+    <!-- Your form HTML content here -->
     <form id="formDataForm">
         <label for="productName">ឈ្មោះទំនិញ:</label>
         <input type="text" name="productName" id="productName"><br><br>
         <label for="link">Linkនៃទំនិញ:</label>
         <input type="url" name="link" id="link"><br><br>
+        <label for="img">រូបភាពទំនិញ: </label>
+        <input type="file" id="img" accept="image*/"><br><br>
+        <label for="quantity">ចំនួន: </label>
+        <input type="number" name="quantity" id="quantity" min="0" max="99"><br><br>
+        <label for="remark">កំណត់សម្គាល់: </label>
+        <textarea name="remark" id="remark" cols="30" rows="10" placeholder="កំណត់សម្គាល់​ម៉ូត ពណ៌​ ទំហំ នឹងចំនួន"></textarea>
+        <label for="freight">ផ្លូវគោក: </label>
+        <select name="freight" id="freight">
+            <option value=""></option>
+            <option value="ផ្លូវគោក">ផ្លូវគោក</option>
+            <option value="ផ្លូវអាកាស">ផ្លូវអាកាស</option>
+        </select><br><br>
         <!-- Other form fields -->
-        <input type="submit" value="ស្នើ">
     </form>
+    <button id="addMoreBtn" type="button">Add More</button>
+    <button id="requestBtn" type="button">ស្នើ</button>
 
     <script>
-        // Get the form element
         const formDataForm = document.getElementById('formDataForm');
+        const addMoreBtn = document.getElementById('addMoreBtn');
+        const requestBtn = document.getElementById('requestBtn');
 
-        // Add submit event listener
-        formDataForm.addEventListener('submit', function(event) {
-            // Prevent the default form submission
-            event.preventDefault();
+        addMoreBtn.addEventListener('click', function() {
+            const newForm = document.createElement('form');
+            newForm.innerHTML = `
+                <label for="productName">ឈ្មោះទំនិញ:</label>
+                <input type="text" name="productName" id="productName"><br><br>
+                <label for="link">Linkនៃទំនិញ:</label>
+                <input type="url" name="link" id="link"><br><br>
+                <label for="img">រូបភាពទំនិញ: </label>
+                <input type="file" id="img" accept="image*/"><br><br>
+                <label for="quantity">ចំនួន: </label>
+                <input type="number" name="quantity" id="quantity" min="0" max="99"><br><br>
+                <label for="remark">កំណត់សម្គាល់: </label>
+                <textarea name="remark" id="remark" cols="30" rows="10" placeholder="កំណត់សម្គាល់​ម៉ូត ពណ៌​ ទំហំ នឹងចំនួន"></textarea>
+                <label for="freight">ផ្លូវគោក: </label>
+                <select name="freight" id="freight">
+                    <option value=""></option>
+                    <option value="ផ្លូវគោក">ផ្លូវគោក</option>
+                    <option value="ផ្លូវអាកាស">ផ្លូវអាកាស</option>
+                </select><br><br>
+                <hr>
+            `;
+            formDataForm.appendChild(newForm);
+        });
 
-            // Get form data
-            const formData = new FormData(formDataForm);
-
-            // Convert form data to object
-            const formDataObj = {};
-            formData.forEach((value, key) => {
-                formDataObj[key] = value;
+        requestBtn.addEventListener('click', function() {
+            const forms = document.querySelectorAll('#formDataForm form');
+            const formDataArray = [];
+            forms.forEach(form => {
+                const formData = new FormData(form);
+                const obj = {};
+                formData.forEach((value, key) => {
+                    obj[key] = value;
+                });
+                formDataArray.push(obj);
             });
-
-            // Store form data in localStorage
-            localStorage.setItem('formData', JSON.stringify(formDataObj));
-
-            // Redirect to another page
-            window.location.href = 'another_page.html';
+            localStorage.setItem('formData', JSON.stringify(formDataArray));
+            alert('Form data submitted successfully!');
         });
     </script>
 </body>
