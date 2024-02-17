@@ -5,6 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Page</title>
+    <!--font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Content:wght@700&family=Hanuman:wght@100;300;400;700;900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="1.css"> <!-- Link to your CSS file -->
 </head>
 
@@ -78,7 +84,7 @@
             const existingData = JSON.parse(localStorage.getItem('formData')) || [];
             const newData = existingData.concat(obj);
             localStorage.setItem('formData', JSON.stringify(newData));
-            alert('Form data submitted successfully!');
+            alert('ការស្នើទិញទំនិញពីក្រៅប្រទេស​បានសម្រេច!');
         });
 
     </script>
