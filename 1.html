@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Page</title>
     <link rel="stylesheet" href="1.css"> <!-- Link to your CSS file -->
 </head>
+
 <body>
     <div class="nav">
         <a href="cart.html">កន្ត្រក់</a>
@@ -25,7 +27,8 @@
         <label for="quantity">ចំនួន: </label>
         <input type="number" name="quantity" id="quantity" min="0" max="99"><br><br>
         <label for="remark">កំណត់សម្គាល់: </label>
-        <textarea name="remark" id="remark" cols="30" rows="10" placeholder="កំណត់សម្គាល់​ម៉ូត ពណ៌​ ទំហំ នឹងចំនួន"></textarea>
+        <textarea name="remark" id="remark" cols="30" rows="10"
+            placeholder="កំណត់សម្គាល់​ម៉ូត ពណ៌​ ទំហំ នឹងចំនួន"></textarea>
         <label for="freight">ផ្លូវគោក: </label>
         <select name="freight" id="freight">
             <option value=""></option>
@@ -42,7 +45,7 @@
         const addMoreBtn = document.getElementById('addMoreBtn');
         const requestBtn = document.getElementById('requestBtn');
 
-        addMoreBtn.addEventListener('click', function() {
+        addMoreBtn.addEventListener('click', function () {
             const newForm = document.createElement('form');
             newForm.innerHTML = `
                 <label for="productName">ឈ្មោះទំនិញ:</label>
@@ -66,20 +69,19 @@
             formDataForm.appendChild(newForm);
         });
 
-        requestBtn.addEventListener('click', function() {
-            const forms = document.querySelectorAll('#formDataForm form');
-            const formDataArray = [];
-            forms.forEach(form => {
-                const formData = new FormData(form);
-                const obj = {};
-                formData.forEach((value, key) => {
-                    obj[key] = value;
-                });
-                formDataArray.push(obj);
+        requestBtn.addEventListener('click', function () {
+            const formData = new FormData(formDataForm);
+            const obj = {};
+            formData.forEach((value, key) => {
+                obj[key] = value;
             });
-            localStorage.setItem('formData', JSON.stringify(formDataArray));
+            const existingData = JSON.parse(localStorage.getItem('formData')) || [];
+            const newData = existingData.concat(obj);
+            localStorage.setItem('formData', JSON.stringify(newData));
             alert('Form data submitted successfully!');
         });
+
     </script>
 </body>
+
 </html>
