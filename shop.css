@@ -2,6 +2,9 @@
 body{
     font-family: "Hanuman", serif;
 }
+button, input, div{
+    font-family: 'Hanuman';
+}
 .nav {
     background-color: #ff0707;
     color: #fff;
