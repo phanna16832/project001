@@ -27,8 +27,18 @@ pTable = () => {
         result.style.color = "Pink"
     }
 }
+// Copy function
+const copypTable = () => {
+    var text = document.querySelector(".result1").textContent;
+    var textarea = document.createElement("textarea");
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand("copy");
+    document.body.removeChild(textarea);
+};
 
-//copy
+//copy genral function
 function copyText(elementId) {
     var text = document.getElementById(elementId).textContent;
     var textarea = document.createElement("textarea");
