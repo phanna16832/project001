@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Show Form Data</title>
+</head>
+<body>
+    <span><a href="refund.html"style="text-decoration = none;"><</a></span>
+  <h1>Submitted Form Data</h1>
+  <div id="formDataContainer"></div>
+
+  <script>
+    // Read form data from JSON file and display it
+    fetch('form_data.json') // Change to the appropriate filename if needed
+      .then(response => response.json())
+      .then(data => {
+        var formDataContainer = document.getElementById('formDataContainer');
+        data.forEach(formData => {
+          var formDataDiv = document.createElement('div');
+          formDataDiv.innerHTML = `
+            <p><strong>Order Number:</strong> ${formData.orderNumber}</p>
+            <p><strong>Issue:</strong> ${formData.issue}</p>
+            <hr>
+          `;
+          formDataContainer.appendChild(formDataDiv);
+        });
+      })
+      .catch(error => {
+        console.error('Error reading form data:', error);
+      });
+  </script>
+</body>
+</html>
