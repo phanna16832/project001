@@ -10,7 +10,7 @@
         <div class="container mx-auto">
             <ul class="flex justify-between items-center">
                 <li>
-                    <a href="#" class=text-pink-300 hover:text-white px-4 py-2">Home</a>
+                    <a href="index.html" class="text-pink-300 hover:text-white px-4 py-2">Home</a>
                 </li>
                 <li>
                     <a href="#" class="text-pink-300 hover:text-white px-4 py-2">Save reply with ccsl and FS warehouse</a>
@@ -36,27 +36,26 @@
             <input type="submit" value="Submit | 提交" class="border-2 border-dashed border-red-400 hover:bg-red-400 hover:text-white flex justify-center items-center" title="请你在这里按钮反馈你的问题，谢谢配合"  onclick="submitForm()">
         </form>
         <script>
-            function submitForm() {
-              // Get form data
-              var orderNumber = document.getElementById("orderN").value;
-              var issue = document.getElementById("issue").value;
-        
-              // Create JSON object
-              var formData = {
-                "orderNumber": orderNumber,
-                "issue": issue
-              };
-        
-              // Convert JSON object to string
-              var formDataString = JSON.stringify(formData);
-        
-              // Write data to file
-              var fs = require('fs');
-              fs.appendFile('form_data.json', formDataString + '\n', function (err) {
-                if (err) throw err;
-                console.log('Data appended to file.');
-              });
-            }
+               function submitForm() {
+      // Get form data
+      var orderNumber = document.getElementById("orderN").value;
+      var issue = document.getElementById("issue").value;
+
+      // Create JSON object
+      var formData = {
+        "orderN": orderNumber,
+        "issue": issue
+      };
+
+      // Convert JSON object to string
+      var formDataString = JSON.stringify(formData);
+
+      // Store data in localStorage
+      localStorage.setItem("formData", formDataString);
+
+      // Redirect to the "showFormData.html" page
+      window.location.href = "showFormData.html";
+    }
           </script>
 </body>
 </html>

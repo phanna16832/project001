@@ -4,31 +4,51 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Show Form Data</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <span><a href="refund.html"style="text-decoration = none;"><</a></span>
-  <h1>Submitted Form Data</h1>
-  <div id="formDataContainer"></div>
+  <span><a href="refund.html"><</a></span>
+  <h1>Captured Form Data</h1>
+  <div id="formDataContainer">
+  </div>
 
   <script>
-    // Read form data from JSON file and display it
-    fetch('form_data.json') // Change to the appropriate filename if needed
-      .then(response => response.json())
-      .then(data => {
-        var formDataContainer = document.getElementById('formDataContainer');
-        data.forEach(formData => {
-          var formDataDiv = document.createElement('div');
-          formDataDiv.innerHTML = `
-            <p><strong>Order Number:</strong> ${formData.orderNumber}</p>
-            <p><strong>Issue:</strong> ${formData.issue}</p>
-            <hr>
-          `;
-          formDataContainer.appendChild(formDataDiv);
-        });
-      })
-      .catch(error => {
-        console.error('Error reading form data:', error);
-      });
+    // Retrieve form data from localStorage
+    var formDataString = localStorage.getItem("formData");
+    
+    // Check if form data exists
+    if (formDataString) {
+      // Parse the JSON string into an object
+      var formData = JSON.parse(formDataString);
+
+      // Display the form data
+      var formDataContainer = document.getElementById('formDataContainer');
+      var formDataDiv = document.createElement('div');
+      formDataDiv.innerHTML = `
+        <p class="text-orange-400"><strong> Order Number:</strong> ${formData.orderN}</p>
+        <p class="text-orange-400"><strong>Issue :</strong> ${formData.issue}</p>
+        <button class="border-2 border-red-400 hover:bg-red-400" id="reset">Reset</button>
+      `;
+      formDataContainer.appendChild(formDataDiv);
+    } else {
+      // No form data found
+      var noDataMessage = document.createElement('p');
+      noDataMessage.textContent = "No form data captured.";
+      formDataContainer.appendChild(noDataMessage);
+    }
+
+    // Reset button click event handler
+    var resetButton = document.getElementById("reset");
+    resetButton.addEventListener("click", function() {
+      // Clear form data from localStorage
+      localStorage.removeItem("formData");
+      // Remove the displayed form data
+      formDataContainer.innerHTML = "";
+      // Display a message indicating data has been reset
+      var resetMessage = document.createElement('p');
+      resetMessage.textContent = "ទិន្នន័យត្រូវបានលុប";
+      formDataContainer.appendChild(resetMessage);
+    });
   </script>
 </body>
 </html>
