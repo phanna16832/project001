@@ -1,0 +1,10 @@
+* , button, div{
+    font-family: 'Siemreap';
+}
+input, textarea{
+    color: #1605fd;
+}
+::selection{
+    background-color: #fd05f5;
+    text-shadow: none;
+}

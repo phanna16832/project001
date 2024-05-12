@@ -7,6 +7,11 @@
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="index.css">
+        <!--google font-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Siemreap&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -55,6 +60,9 @@
             </div>
         </div>
     </nav>
+    <div>
+        <pre class="text-danger" id="pw"> Password:888888 ID:  លេខទូរស័ព្ទ: 0 <button class="btn btn-danger" onclick="copyText('pw')">Copy</button></pre> 
+    </div>
     <div id="cmt">
       <pre class="row justify-content-center align-items-center center-div">
    សួស្តីបង 
@@ -98,7 +106,7 @@
                 <div>
                     <label for="num">ទឹកប្រាក់</label>
                     <input type="text" name="price" id="p" placeholder="តម្លៃទំនិញ">
-                    <select id="rate" class="btn btn-outline-warning">
+                    <select id="rate" class="btn">
                         <option value="">Rate</option>
                         <option value="6">6</option>
                         <option value="6.1">6.1</option>
