@@ -9,3 +9,6 @@ input, textarea{
     color: white;
     text-shadow: none;
 }
+.refund input{
+    color: #ce1616e6;
+}

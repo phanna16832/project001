@@ -41,23 +41,30 @@ const copypTable = () => {
     document.body.removeChild(textarea);
 };
 
-cal = () =>{
+cal = () => {
     var p1 = parseFloat(document.getElementById('p1').value);
     var p2 = parseFloat(document.getElementById('p2').value);
     var answer = document.getElementById('answer');
     var fee = document.getElementById('fee');
 
-    calc = p2-p1
-    feeCal = calc*6.4.toFixed(2);
-    if(isNaN(p1) || isNaN(p2)){
-        answer.textContent = " "
-    }
-    else{
+    var calc = p2 - p1;
+    var feeCal = (calc * 6.4).toFixed(2);
+    
+    if (isNaN(p1) || isNaN(p2)) {
+        answer.textContent = "";
+    } else {
         answer.textContent = calc;
         fee.innerHTML = `ថ្លៃដឹក ${feeCal} ￥`;
     }
-    fee.className  = "text-danger";
-    answer.className = "text-danger"
+    
+    if (fee <0 && answer <0) {
+        fee.className = 'text-danger';
+        answer.className = 'text-danger';
+    }
+    else{
+        fee.className = 'text-danger';
+        answer.className = 'text-danger';
+    }
 }
 
 //copy genral function

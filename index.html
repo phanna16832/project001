@@ -120,18 +120,20 @@
                     <div id="result1" class="result"></div>
                     <input type="submit" value="Calculate" onclick="calculatePrice()" class="btn btn-outline-warning">
                     <span>|</span>
-                    <input type="submit" value="Copy" onclick="copyText('result1')" class="btn btn-outline-warning"><br><br><br>
+                    <input type="submit" value="Copy" onclick="copyText('result1')" class="btn btn-outline-warning">
                 </div>
             </div>
             </div>
-            <class id="col-md-6">
+        <div class="refund">
+            <br><br><class id="col-md-6">
                 <label for="price1">តម្លៃទំនិញក្នុងអេប</label>
                 <input type="number" name="p1" id="p1"><br><br>
                 <label for="price2">តម្លៃទំនិញក្នុងអេបចិន</label>
                 <input type="number" name="p1" id="p2"><br><br>
-                <div id="answer"></div>
+                <div id="answer"></div><br><br>
                 <div id="fee"></div>
-                <button type="button" onclick="cal()">គណនា</button>
+                <button type="button" onclick="cal()" class="btn btn-danger">គណនា</button>
+                <button type="button" onclick="copyText('answer')" class="btn btn-warning">គណនា</button>
             </div>
         </div>
     </div>
