@@ -106,8 +106,8 @@
             <div class="col-md-6">
                 <div>
                     <label for="num">ទឹកប្រាក់</label>
-                    <input type="text" name="price" id="p" placeholder="តម្លៃទំនិញ">
-                    <select id="rate" class="btn">
+                    <input type="text" name="price" id="priceInput" placeholder="តម្លៃទំនិញ">
+                    <select id="rateSelect" class="btn">
                         <option value="">Rate</option>
                         <option value="6">6</option>
                         <option value="6.1">6.1</option>
@@ -117,11 +117,12 @@
                         <option value="6.4">6.4</option>
                         <option value="6.5">6.5</option>
                     </select><br><br>
-                    <div class="result1"></div>
-                    <input type="submit" value="Calculate" onclick="pTable()" class="btn btn-outline-warning" >
+                    <div id="result1" class="result"></div>
+                    <input type="submit" value="Calculate" onclick="calculatePrice()" class="btn btn-outline-warning">
                     <span>|</span>
-                    <input type="submit" value="Copy" onclick="copypTable()" class="btn btn-outline-warning" ><br><br><br>
+                    <input type="submit" value="Copy" onclick="copyText('result1')" class="btn btn-outline-warning"><br><br><br>
                 </div>
+            </div>
             </div>
             <class id="col-md-6">
                 <label for="price1">តម្លៃទំនិញក្នុងអេប</label>

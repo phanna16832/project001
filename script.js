@@ -14,20 +14,22 @@ calculator = () =>{
 
 }
 
-//calculator 
-pTable = () => {
-    var p = parseFloat(document.getElementById("p").value);
-    var r = parseFloat(document.getElementById("rate").value);
-    var result = document.getElementById("result1"); // Changed ID to class'
+//calculator price 
+function calculatePrice() {
+    var price = parseFloat(document.getElementById("priceInput").value);
+    var rate = parseFloat(document.getElementById("rateSelect").value);
+    var resultElement = document.getElementById("result1");
 
-    if (isNaN(p) || isNaN(r)) {
-        result.textContent = "";
+    if (isNaN(price) || isNaN(rate)) {
+        resultElement.textContent = "Please enter valid numbers.";
+        resultElement.className = "text-danger";
     } else {
-        var cal = (p / r).toFixed(2);
-        result.textContent = `សួស្តីបង សរុបហាងទំនិញទាំងអស់ ${p}   ចែកនឹង  ${r}  =   $  ${cal}   ***បញ្ជាក់: ចំពោះទំនិញទិញក្នុងហាងតែមួយ ប្រសិនខាងហាងបំបែកកញ្ចប់ទំនិញ ខាងប្អូននឹងរាប់កញ្ចប់ទំនិញគិតថ្លៃដឹកតាមចំនួនកញ្ចប់ទំនិញដូចគ្នា សំរាប់កញ្ចប់ដែលក្រោម1គីឡូ ខាងប្អូនគិតមួយគីឡូ លើស1គីឡូយក ទំហំនិង ទម្ងង់ប្រៀបធៀបគ្នាមួយណាធំជាងយកមួយនឹងជាគោលគិតថ្លៃដឹកជញ្ចូន`
-        result.className = "text-info"
+        var calculatedPrice = (price / rate).toFixed(2);
+        resultElement.textContent = `សួស្តីបង សរុបហាងទំនិញទាំងអស់ ${price}   ចែកនឹង  ${rate}  =   $  ${calculatedPrice}   ***បញ្ជាក់: ចំពោះទំនិញទិញក្នុងហាងតែមួយ ប្រសិនខាងហាងបំបែកកញ្ចប់ទំនិញ ខាងប្អូននឹងរាប់កញ្ចប់ទំនិញគិតថ្លៃដឹកតាមចំនួនកញ្ចប់ទំនិញដូចគ្នា សំរាប់កញ្ចប់ដែលក្រោម1គីឡូ ខាងប្អូនគិតមួយគីឡូ លើស1គីឡូយក ទំហំនិង ទម្ងង់ប្រៀបធៀបគ្នាមួយណាធំជាងយកមួយនឹងជាគោលគិតថ្លៃដឹកជញ្ចូន`;
+        resultElement.className = "text-info";
     }
 }
+
 // Copy function
 const copypTable = () => {
     var text = document.querySelector(".result1").textContent;
