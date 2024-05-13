@@ -12,6 +12,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Siemreap&display=swap" rel="stylesheet">
+<link rel="shortcut icon" href="/icon/note.png" type="image/x-icon">
 </head>
 
 <body>
@@ -119,8 +120,17 @@
                     <div class="result1"></div>
                     <input type="submit" value="Calculate" onclick="pTable()" class="btn btn-outline-warning" >
                     <span>|</span>
-                    <input type="submit" value="Copy" onclick="copypTable()" class="btn btn-outline-warning" >
+                    <input type="submit" value="Copy" onclick="copypTable()" class="btn btn-outline-warning" ><br><br><br>
                 </div>
+            </div>
+            <class id="col-md-6">
+                <label for="price1">តម្លៃទំនិញក្នុងអេប</label>
+                <input type="number" name="p1" id="p1"><br><br>
+                <label for="price2">តម្លៃទំនិញក្នុងអេបចិន</label>
+                <input type="number" name="p1" id="p2"><br><br>
+                <div id="answer"></div>
+                <div id="fee"></div>
+                <button type="button" onclick="cal()">គណនា</button>
             </div>
         </div>
     </div>

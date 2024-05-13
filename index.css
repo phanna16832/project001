@@ -5,6 +5,7 @@ input, textarea{
     color: #1605fd;
 }
 ::selection{
-    background-color: #fd05f5;
+    background-color: #fd0505;
+    color: white;
     text-shadow: none;
 }

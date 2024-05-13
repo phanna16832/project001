@@ -18,7 +18,8 @@ calculator = () =>{
 pTable = () => {
     var p = parseFloat(document.getElementById("p").value);
     var r = parseFloat(document.getElementById("rate").value);
-    var result = document.querySelector(".result1"); // Changed ID to class
+    var result = document.getElementById("result1"); // Changed ID to class'
+
     if (isNaN(p) || isNaN(r)) {
         result.textContent = "";
     } else {
@@ -37,6 +38,25 @@ const copypTable = () => {
     document.execCommand("copy");
     document.body.removeChild(textarea);
 };
+
+cal = () =>{
+    var p1 = parseFloat(document.getElementById('p1').value);
+    var p2 = parseFloat(document.getElementById('p2').value);
+    var answer = document.getElementById('answer');
+    var fee = document.getElementById('fee');
+
+    calc = p2-p1
+    feeCal = calc*6.4.toFixed(2);
+    if(isNaN(p1) || isNaN(p2)){
+        answer.textContent = " "
+    }
+    else{
+        answer.textContent = calc;
+        fee.innerHTML = `ថ្លៃដឹក ${feeCal} ￥`;
+    }
+    fee.className  = "text-danger";
+    answer.className = "text-danger"
+}
 
 //copy genral function
 function copyText(elementId) {
