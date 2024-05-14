@@ -41,29 +41,36 @@ const copypTable = () => {
     document.body.removeChild(textarea);
 };
 
-cal = () => {
+function cal() {
     var p1 = parseFloat(document.getElementById('p1').value);
     var p2 = parseFloat(document.getElementById('p2').value);
+    var bPrice = document.getElementById('b-price');
     var answer = document.getElementById('answer');
     var fee = document.getElementById('fee');
 
-    var calc = p2 - p1;
-    var feeCal = (calc * 6.4).toFixed(2);
-    
     if (isNaN(p1) || isNaN(p2)) {
         answer.textContent = "";
+        bPrice.textContent = "";
+        fee.textContent = "";
+        return;
+    }
+
+    const bPrice1 = (p2 / 6.4).toFixed(2);
+    var calc = (p1 - bPrice1).toFixed(2);
+    var feeCal = (calc * 6.4).toFixed(2);
+
+    bPrice.textContent = `តម្លៃទំនិញជាលុយដុល្លា: ${bPrice1}`;
+    answer.textContent = `តម្លៃដែលត្រូវកែ: ${calc}`;
+    fee.textContent = `ថ្លៃដឹក: ${feeCal} ￥`;
+
+    if (calc < 0) {
+        bPrice.className = 'text-danger';
+        answer.className = 'text-danger';
+        fee.className = 'text-danger';
     } else {
-        answer.textContent = calc;
-        fee.innerHTML = `ថ្លៃដឹក ${feeCal} ￥`;
-    }
-    
-    if (fee <0 && answer <0) {
-        fee.className = 'text-danger';
-        answer.className = 'text-danger';
-    }
-    else{
-        fee.className = 'text-danger';
-        answer.className = 'text-danger';
+        bPrice.className = '';
+        answer.className = '';
+        fee.className = '';
     }
 }
 

@@ -124,18 +124,19 @@
                 </div>
             </div>
             </div>
-        <div class="refund">
-            <br><br><class id="col-md-6">
-                <label for="price1">តម្លៃទំនិញក្នុងអេប</label>
-                <input type="number" name="p1" id="p1"><br><br>
-                <label for="price2">តម្លៃទំនិញក្នុងអេបចិន</label>
-                <input type="number" name="p1" id="p2"><br><br>
-                <div id="answer"></div><br><br>
-                <div id="fee"></div>
-                <button type="button" onclick="cal()" class="btn btn-danger">គណនា</button>
-                <button type="button" onclick="copyText('answer')" class="btn btn-warning">គណនា</button>
+            <div class="refund">
+                <div id="col-md-6">
+                    <label for="p1">តម្លៃទំនិញក្នុងអេប</label>
+                    <input type="number" name="p1" id="p1"><br><br>
+                    <label for="p2">តម្លៃទំនិញក្នុងអេបចិន</label>
+                    <input type="number" name="p2" id="p2" placeholder="តម្លៃពីអេប 淘宝 1688.."><br><br>
+                    <div id="b-price"></div><br><br>
+                    <div id="answer"></div><br><br>
+                    <div id="fee"></div><br><br>
+                    <button type="button" onclick="cal()" class="btn btn-danger">គណនា</button>
+                </div>
             </div>
-        </div>
+            
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
