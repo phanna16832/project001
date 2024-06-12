@@ -62,9 +62,11 @@
         </div>
     </nav>
     <div><marquee direction="left" width="60%" height="100px"class="text-success">Website នេះបង្កើតសម្រាប់ជា ជំនួយក្នុងការreply chatភ្ញៀវតែប៉ុណ្ណោះ នឹងគោលបំណងហ្វឹកហាត់ការសរសេរកូដតែប៉ុណ្ណោះ</marquee></div>
-    <div>
-        <pre class="text-danger" id="pw"> Password:888888 ID:  លេខទូរស័ព្ទ: 0 <button class="btn btn-danger" onclick="copyText('pw')">Copy</button></pre> 
-    </div>
+        <details>
+            <summary>Create ID</summary>
+            <em>Password:888888 ID:  លេខទូរស័ព្ទ: 0 </em>
+            <button class="btn btn-danger" id="pw" onclick="copyText('pw')">Copy</button>
+        </details> 
     <div id="cmt">
       <pre class="row justify-content-center align-items-center center-div">
    សួស្តីបង 
@@ -106,8 +108,10 @@
             <!-- Currency Converter -->
             <div class="col-md-6">
                 <div>
-                    <label for="num">ទឹកប្រាក់</label>
-                    <input type="text" name="price" id="priceInput" placeholder="តម្លៃទំនិញ">
+                    <label for="priceInput">ទឹកប្រាក់</label>
+                    <input type="number" name="price" id="priceInput" placeholder="តម្លៃទំនិញ"><br>
+            
+                    <label for="rateSelect">អាត្រាប្តូរប្រាក់</label>
                     <select id="rateSelect" class="btn">
                         <option value="">Rate</option>
                         <option value="6">6</option>
@@ -117,13 +121,24 @@
                         <option value="6.35">6.35</option>
                         <option value="6.4">6.4</option>
                         <option value="6.5">6.5</option>
+                        <option value="6.55">6.55</option>
+                        <option value="6.6">6.6</option>
+                        <option value="6.7">6.7</option>
+                    </select><br>
+            
+                    <label for="lang">Language</label>
+                    <select id="lang">
+                        <option value="" selected>Select the language</option>
+                        <option value="ch">中文</option>
+                        <option value="eng">English</option>
+                        <option value="kh">Khmer</option>
                     </select><br><br>
+            
                     <div id="result1" class="result"></div>
-                    <input type="submit" value="Calculate" onclick="calculatePrice()" class="btn btn-outline-warning">
+                    <button onclick="calculatePrice()" class="btn btn-outline-warning">Calculate</button>
                     <span>|</span>
-                    <input type="submit" value="Copy" onclick="copyText('result1')" class="btn btn-outline-warning">
+                    <button onclick="copypTable()" class="btn btn-outline-warning">Copy</button>
                 </div>
-            </div>
             </div>
             <div class="refund">
                 <div id="col-md-6">

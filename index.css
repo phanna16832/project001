@@ -1,3 +1,7 @@
+#pw{
+   margin-left : 50px;
+   border:none;
+}
 * , button, div{
     font-family: 'Siemreap';
 }
@@ -11,4 +15,10 @@ input, textarea{
 }
 .refund input{
     color: #ce1616e6;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

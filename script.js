@@ -15,17 +15,30 @@ calculator = () =>{
 }
 
 //calculator price 
-function calculatePrice() {
+const calculatePrice = () => {
     var price = parseFloat(document.getElementById("priceInput").value);
     var rate = parseFloat(document.getElementById("rateSelect").value);
     var resultElement = document.getElementById("result1");
+    var lang = document.getElementById("lang").value;
 
     if (isNaN(price) || isNaN(rate)) {
         resultElement.textContent = "Please enter valid numbers.";
         resultElement.className = "text-danger";
     } else {
         var calculatedPrice = (price / rate).toFixed(2);
-        resultElement.textContent = `សួស្តីបង សរុបហាងទំនិញទាំងអស់ ${price}   ចែកនឹង  ${rate}  =   $  ${calculatedPrice}   ***បញ្ជាក់: ចំពោះទំនិញទិញក្នុងហាងតែមួយ ប្រសិនខាងហាងបំបែកកញ្ចប់ទំនិញ ខាងប្អូននឹងរាប់កញ្ចប់ទំនិញគិតថ្លៃដឹកតាមចំនួនកញ្ចប់ទំនិញដូចគ្នា សំរាប់កញ្ចប់ដែលក្រោម1គីឡូ ខាងប្អូនគិតមួយគីឡូ លើស1គីឡូយក ទំហំនិង ទម្ងង់ប្រៀបធៀបគ្នាមួយណាធំជាងយកមួយនឹងជាគោលគិតថ្លៃដឹកជញ្ចូន`;
+
+        switch (lang) {
+            case "ch":
+                resultElement.innerHTML = `您好，店铺总价格是 ${price} 除以 ${rate} = $ ${calculatedPrice}。***注意：对于在单个商店购买的商品，如果商店拆分包裹，我们将根据相同包裹的数量计算运费。对于1公斤以下的包裹，我们按一公斤计算。如果超过1公斤，将使用体积和重量中的较大者作为运费标准。`;
+                break;
+            case "eng":
+                resultElement.innerHTML = `Hello, the total store price is ${price} divided by ${rate} = $ ${calculatedPrice}. ***Note: For items purchased in a single store, if the store splits the package, we will calculate the shipping cost based on the number of identical packages. For packages under 1kg, we count one kilo. If over 1kg, the larger of volume and weight will be used as the shipping cost criterion.`;
+                break;
+            default:
+                resultElement.innerHTML = `សួស្តីបង សរុបហាងទំនិញទាំងអស់ ${price} ចែកនឹង ${rate} = $ ${calculatedPrice} ***បញ្ជាក់: ចំពោះទំនិញទិញក្នុងហាងតែមួយ ប្រសិនខាងហាងបំបែកកញ្ចប់ទំនិញ ខាងប្អូននឹងរាប់កញ្ចប់ទំនិញគិតថ្លៃដឹកតាមចំនួនកញ្ចប់ទំនិញដូចគ្នា សំរាប់កញ្ចប់ដែលក្រោម1គីឡូ ខាងប្អូនគិតមួយគីឡូ លើស1គីឡូយក ទំហំនិង ទម្ងង់ប្រៀបធៀបគ្នាមួយណាធំជាងយកមួយនឹងជាគោលគិតថ្លៃដឹកជញ្ចូន`;
+                resultElement.className = "text-warning";
+                return;
+        }
         resultElement.className = "text-info";
     }
 }
@@ -84,4 +97,3 @@ function copyText(elementId) {
     document.execCommand("copy");
     document.body.removeChild(textarea);
 }
-
