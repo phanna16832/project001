@@ -54,6 +54,7 @@ const copypTable = () => {
     document.body.removeChild(textarea);
 };
 
+//系统计算机
 function cal() {
     var p1 = parseFloat(document.getElementById('p1').value);
     var p2 = parseFloat(document.getElementById('p2').value);
@@ -69,11 +70,11 @@ function cal() {
     }
 
     const bPrice1 = (p2 / 6.5).toFixed(2);
-    var calc = (bPrice1-p1).toFixed(2);
+    var calc = (bPrice1 - p1).toFixed(2);
     var feeCal = (calc * 6.5).toFixed(2);
 
-    bPrice.textContent = `តម្លៃទំនិញជាលុយដុល្លា: ${bPrice1}`;
-    answer.textContent = `តម្លៃដែលត្រូវកែ: ${calc}`;
+    bPrice.textContent = `${bPrice1}`;
+    answer.textContent = `${calc}`;
     fee.textContent = `ថ្លៃដឹក: ${feeCal} ￥`;
 
     if (calc < 0) {
@@ -86,6 +87,28 @@ function cal() {
         fee.className = '';
     }
 }
+
+function copyText(elementId) {
+    var text = document.getElementById(elementId).textContent;
+    navigator.clipboard.writeText(text).then(() => {
+        alert('Copied to clipboard');
+    }).catch(err => {
+        alert('Failed to copy');
+    });
+}
+
+document.querySelectorAll('input[type=number]').forEach((input, index, array) => {
+    input.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            if (index + 1 < array.length) {
+                array[index + 1].focus();
+            } else {
+                document.querySelector('button.btn-danger').focus();
+            }
+        }
+    });
+});
 
 //copy genral function
 function copyText(elementId) {
