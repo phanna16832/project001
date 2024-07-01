@@ -69,9 +69,9 @@ function cal() {
         return;
     }
 
-    const bPrice1 = (p2 / 6.5).toFixed(2);
+    const bPrice1 = (p2 / 6.4).toFixed(2);
     var calc = (bPrice1 - p1).toFixed(2);
-    var feeCal = (calc * 6.5).toFixed(2);
+    var feeCal = (calc * 6.4).toFixed(2);
 
     bPrice.textContent = `${bPrice1}`;
     answer.textContent = `${calc}`;
