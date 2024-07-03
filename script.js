@@ -59,9 +59,12 @@ function cal() {
     var p1 = parseFloat(document.getElementById('p1').value);
     var p2 = parseFloat(document.getElementById('p2').value);
     var bPrice = document.getElementById('b-price');
+    var rate = document.getElementById('rate');
     var answer = document.getElementById('answer');
     var fee = document.getElementById('fee');
 
+    const updateRate = parseFloat(6.4);
+    rate.textContent = updateRate;
     if (isNaN(p1) || isNaN(p2)) {
         answer.textContent = "";
         bPrice.textContent = "";
@@ -69,9 +72,9 @@ function cal() {
         return;
     }
 
-    const bPrice1 = (p2 / 6.4).toFixed(2);
+    const bPrice1 = (p2 / updateRate).toFixed(2);
     var calc = (bPrice1 - p1).toFixed(2);
-    var feeCal = (calc * 6.4).toFixed(2);
+    var feeCal = (calc * updateRate).toFixed(2);
 
     bPrice.textContent = `${bPrice1}`;
     answer.textContent = `${calc}`;
