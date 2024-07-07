@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refund Orders Record</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 5px;
+        }
+        .edit, .delete, .save, .cancel, .submit {
+            cursor: pointer;
+            padding: 5px 10px;
+            border: none;
+            color: white;
+            background-color: #007bff;
+            border-radius: 4px;
+        }
+        .delete {
+            background-color: #dc3545;
+        }
+        .save {
+            background-color: #28a745;
+        }
+        .cancel {
+            background-color: #6c757d;
+        }
+        .submit {
+            background-color: #ffc107;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="refund.html">Refund Form</a></li>
+        </ul>
+    </nav>
+    <h1>Refund Orders Record</h1>
+    <table id="orderTable">
+        <thead>
+            <tr>
+                <th>Order Number</th>
+                <th>CE ID</th>
+                <th>Purchase Platform</th>
+                <th>Remarks</th>
+                <th>Submission Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be inserted here dynamically -->
+        </tbody>
+    </table>
+
+    <script>
+        let refundOrders = JSON.parse(localStorage.getItem('refundOrders')) || [];
+
+        const orderTable = document.querySelector("#orderTable tbody");
+
+        function createDropdown(selectedValue) {
+            const dropdown = document.createElement('select');
+            const options = ['Pending', 'Success', 'Failed'];
+            options.forEach(option => {
+                const opt = document.createElement('option');
+                opt.value = option;
+                opt.textContent = option;
+                if (option === selectedValue) opt.selected = true;
+                dropdown.appendChild(opt);
+            });
+            return dropdown;
+        }
+
+        function updateLocalStorage() {
+            localStorage.setItem('refundOrders', JSON.stringify(refundOrders));
+        }
+
+        function displayRefundOrders() {
+            orderTable.innerHTML = '';
+            refundOrders.forEach((order, index) => {
+                const row = orderTable.insertRow();
+                row.insertCell(0).textContent = order.orderNumber;
+                row.insertCell(1).textContent = order.ceID;
+                row.insertCell(2).textContent = order.purchasePlatform;
+                row.insertCell(3).textContent = order.remark;
+                row.insertCell(4).textContent = order.submissionDate;
+
+                const statusCell = row.insertCell(5);
+                const statusDropdown = createDropdown(order.status || 'Pending');
+                statusCell.appendChild(statusDropdown);
+
+                const actionCell = row.insertCell(6);
+                const actionDiv = document.createElement('div');
+                actionDiv.classList.add('action-buttons');
+
+                const editButton = document.createElement('button');
+                editButton.textContent = 'Edit';
+                editButton.classList.add('edit');
+                editButton.addEventListener('click', () => editRefundOrder(index, statusDropdown));
+                actionDiv.appendChild(editButton);
+
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.classList.add('delete');
+                deleteButton.addEventListener('click', () => deleteRefundOrder(index));
+                actionDiv.appendChild(deleteButton);
+
+                const submitButton = document.createElement('button');
+                submitButton.textContent = 'Submit';
+                submitButton.classList.add('submit');
+                submitButton.addEventListener('click', () => submitRefundOrder(index));
+                actionDiv.appendChild(submitButton);
+
+                actionCell.appendChild(actionDiv);
+            });
+        }
+
+        function editRefundOrder(index, statusDropdown) {
+            const row = orderTable.rows[index + 1];
+            row.cells[0].contentEditable = true;
+            row.cells[1].contentEditable = true;
+            row.cells[2].contentEditable = true;
+            row.cells[3].contentEditable = true;
+            row.cells[4].contentEditable = true;
+
+            const saveButton = document.createElement('button');
+            saveButton.textContent = 'Save';
+            saveButton.classList.add('save');
+            saveButton.addEventListener('click', () => saveRefundOrder(index, statusDropdown, saveButton));
+            row.cells[6].querySelector('.edit').replaceWith(saveButton);
+
+            const cancelButton = document.createElement('button');
+            cancelButton.textContent = 'Cancel';
+            cancelButton.classList.add('cancel');
+            cancelButton.addEventListener('click', () => cancelEditRefundOrder(index, saveButton, cancelButton));
+            row.cells[6].querySelector('.delete').replaceWith(cancelButton);
+        }
+
+        function saveRefundOrder(index, statusDropdown, saveButton) {
+            const row = orderTable.rows[index + 1];
+            refundOrders[index] = {
+                orderNumber: row.cells[0].textContent,
+                ceID: row.cells[1].textContent,
+                purchasePlatform: row.cells[2].textContent,
+                remark: row.cells[3].textContent,
+                submissionDate: row.cells[4].textContent,
+                status: statusDropdown.value
+            };
+            updateLocalStorage();
+            displayRefundOrders();
+        }
+
+        function cancelEditRefundOrder(index, saveButton, cancelButton) {
+            displayRefundOrders();
+        }
+
+        function deleteRefundOrder(index) {
+            refundOrders.splice(index, 1);
+            updateLocalStorage();
+            displayRefundOrders();
+        }
+
+        function submitRefundOrder(index) {
+            refundOrders[index].status = 'Submitted';
+            updateLocalStorage();
+            displayRefundOrders();
+        }
+
+        // Initial display of refund orders
+        displayRefundOrders();
+    </script>
+</body>
+</html>

@@ -1,61 +1,100 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refund Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+        form {
+            margin-top: 20px;
+        }
+        form label {
+            display: block;
+            margin-top: 10px;
+        }
+        form input, form select, form button {
+            margin-top: 5px;
+            padding: 8px;
+            width: 100%;
+            max-width: 400px;
+        }
+        form button {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <nav class="bg-cyan-800 py-4">
-        <div class="container mx-auto">
-            <ul class="flex justify-between items-center">
-                <li>
-                    <a href="index.html" class="text-pink-300 hover:text-white px-4 py-2">Home</a>
-                </li>
-                <li>
-                    <a href="#" class="text-pink-300 hover:text-white px-4 py-2">Save reply with ccsl and FS warehouse</a>
-                </li>
-                <li>
-                    <a href="problemForm.html" class="text-pink-300 hover:text-white px-4 py-2">problem Report</a>
-                </li>
-            </ul>
-        </div>
+    <nav>
+        <ul>
+            <li><a href="index.html"></a></li>
+            <li><a href="Refund_order.html">Refund Orders Record</a></li>
+        </ul>
     </nav>
-    <div>
-        <form action="">
-            <span>បញ្ហា</span><br><br>
-            <label for="name" class="text-yellow-300">លេខបុងបញ្ជាទិញ | 订单编号 ：</label>
-            <input type="text" name="Order number" id="orderN" class="border-solid border-2 border-blue-500 rounded-2xl" required><br><br>
-            <label for="text" class="text-wrap text-yellow-300">មូលហេតុបញ្ហា | 问题原因： </label>
-            <select value="source" required class="border-2 border-cyan-400 text-pink-400" id="issue">
-                <option></option>
-                <option> Refund | 退款</option>
-                <option> 卖家发少货品</option>
-                <option> 卖家发错款式</option>
-            </select> <br><br>
-            <input type="submit" value="Submit | 提交" class="border-2 border-dashed border-red-400 hover:bg-red-400 hover:text-white flex justify-center items-center" title="请你在这里按钮反馈你的问题，谢谢配合"  onclick="submitForm()">
-        </form>
-        <script>
-               function submitForm() {
-      // Get form data
-      var orderNumber = document.getElementById("orderN").value;
-      var issue = document.getElementById("issue").value;
+    <form id="refundForm">
+        <label for="orderNumber">Order Number</label>
+        <input type="text" name="orderNumber" id="orderNumber" required>
+        
+        <label for="ceID">CE ID</label>
+        <input type="text" name="ceid" id="ceID" required>
+        
+        <label for="purchaseP">Purchase Platform</label>
+        <select name="purchase-platform" id="purchaseP" required>
+            <option value="" selected>请选择代购平台</option>
+            <option value="taobao">taobao</option>
+            <option value="1688">1688</option>
+            <option value="pinduoduo">pinduoduo</option>
+            <option value="xianyu">xianyu</option>
+            <option value="jingdong">jingdong</option>
+        </select>
+        
+        <label for="remark">Remarks</label>
+        <input type="text" name="remark" id="remark" placeholder="请备注问题">
+        
+        <button type="submit">提交 | Submit</button>
+    </form>
 
-      // Create JSON object
-      var formData = {
-        "orderN": orderNumber,
-        "issue": issue
-      };
-
-      // Convert JSON object to string
-      var formDataString = JSON.stringify(formData);
-
-      // Store data in localStorage
-      localStorage.setItem("formData", formDataString);
-
-      // Redirect to the "showFormData.html" page
-      window.location.href = "showFormData.html";
-    }
-          </script>
+    <script>
+        document.querySelector("#refundForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            const orderNumber = document.querySelector("#orderNumber").value;
+            const ceID = document.querySelector("#ceID").value;
+            const purchasePlatform = document.querySelector("#purchaseP").value;
+            const remark = document.querySelector("#remark").value;
+            const submissionDate = new Date().toISOString().split('T')[0];
+            
+            const refundOrder = {
+                orderNumber: orderNumber,
+                ceID: ceID,
+                purchasePlatform: purchasePlatform,
+                remark: remark,
+                submissionDate: submissionDate
+            };
+            
+            // Retrieve existing refund orders from localStorage
+            let refundOrders = JSON.parse(localStorage.getItem('refundOrders')) || [];
+            
+            // Add the new refund order
+            refundOrders.push(refundOrder);
+            
+            // Save back to localStorage
+            localStorage.setItem('refundOrders', JSON.stringify(refundOrders));
+            
+            // Clear the form inputs
+            document.querySelector("#refundForm").reset();
+        });
+    </script>
 </body>
 </html>

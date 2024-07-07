@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submitted Refunds Record</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="refund.html">Refund Form</a></li>
+            <li><a href="refund_orders.html">Refund Orders Record</a></li>
+        </ul>
+    </nav>
+    <h1>Submitted Refunds Record</h1>
+    <table id="submittedTable">
+        <thead>
+            <tr>
+                <th>Order Number</th>
+                <th>CE ID</th>
+                <th>Purchase Platform</th>
+                <th>Remarks</th>
+                <th>Submission Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be inserted here dynamically -->
+        </tbody>
+    </table>
+
+    <script>
+        let submittedRefunds = JSON.parse(localStorage.getItem('submittedRefunds')) || [];
+
+        const submittedTable = document.querySelector("#submittedTable tbody");
+
+        function displaySubmittedRefunds() {
+            submittedTable.innerHTML = '';
+            submittedRefunds.forEach(order => {
+                const row = submittedTable.insertRow();
+                row.insertCell(0).textContent = order.orderNumber;
+                row.insertCell(1).textContent = order.ceID;
+                row.insertCell(2).textContent = order.purchasePlatform;
+                row.insertCell(3).textContent = order.remark;
+                row.insertCell(4).textContent = order.submissionDate;
+                row.insertCell(5).textContent = order.status;
+            });
+        }
+
+        // Initial display of submitted refunds
+        displaySubmittedRefunds();
+    </script>
+</body>
+</html>
