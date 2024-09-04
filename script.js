@@ -63,7 +63,7 @@ function cal() {
     var answer = document.getElementById('answer');
     var fee = document.getElementById('fee');
 
-    const updateRate = parseFloat(6.4);
+    const updateRate = parseFloat(6.2);
     rate.textContent = updateRate;
     if (isNaN(p1) || isNaN(p2)) {
         answer.textContent = "";
